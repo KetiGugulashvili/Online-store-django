@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user }}</title>
+</head>
+<body>
+ <h1> {{ user }} </h1>
+<p> {{ user.email }} </p>
+ <h3>Added items:</h3>
+ <ul>
+     {% for item in user.items.all %}
+     <li><a href="{% url "item-detail" item.pk%}">{{item}}<a/></li>
+     {% endfor %}
+ </ul>
+<a href="{% url "user-update" user.pk %}">Edit</a>
+ <br>
+ <form action="{% url "user-delete" user.pk%}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+ </form>
+ <br>
+<a href="{% url "user-list"%}">Show the list of users</a>
+
+</body>
+</html>

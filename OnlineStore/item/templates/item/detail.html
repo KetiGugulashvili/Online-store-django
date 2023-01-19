@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ item }}</title>
+</head>
+<body>
+<h2>{{ item.item }}</h2>
+<p>{{ item.description }}</p>
+<p>Price is: {{ item.price }}$</p>
+
+    {% if item.picture %}
+        <img src="{{item.picture.url}}" alt="">
+    {% endif %}
+
+<p>Added by: <a href="{%url "user-detail" item.user.pk %}">{{ item.user }}<a/></p>
+<a href="{% url "user-list"%}">Show the list of users</a>
+<br>
+<a href="{% url "item-list"%}">Show all items</a>
+<br><br>
+<a href="{% url "item-update" item.pk %}">Edit</a>
+<br><br>
+<form action="{% url "item-delete" item.pk%}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+ </form>
+
+</body>
+</html>

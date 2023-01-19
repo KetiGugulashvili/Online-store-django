@@ -16,7 +16,7 @@ class Item(models.Model):
     description = models.CharField(max_length=200)
     price = models.IntegerField()
     picture = models.ImageField(upload_to="item/", blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="users")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="items")
 
     def __str__(self):
         return self.item
